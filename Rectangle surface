@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+class Rectangle {
+
+    private :
+         float largeur ;
+         float longueur;
+
+    public:
+    static int count;
+    Rectangle();
+    Rectangle(float,float);
+    Rectangle(Rectangle &);
+    ~Rectangle();
+    void setLargeur(float);
+    void setLongueur(float);
+    float getLargeur() const;
+    float getLongueur() const;
+    float surface() const;
+    void saisir();
+    void afficher() const ;
+    int getCount() const;
+
+};
+int Rectangle::count=0;
+Rectangle::Rectangle():largeur(0),longueur(0){
+
+    count++;
+}
+Rectangle::Rectangle(float larg,float lon):largeur(larg),longueur(lon){
+
+    count++;
+}
+Rectangle:: Rectangle(Rectangle &autre):largeur(autre.largeur),longueur(autre.longueur){}
+
+Rectangle::~Rectangle(){
+    count--;
+}
+void Rectangle::setLargeur(float larg){
+   largeur=larg;
+}
+
+
+void Rectangle::setLongueur(float lon){
+    longueur=lon;
+}
+
+float Rectangle ::getLongueur() const{
+    return longueur;
+}
+float Rectangle::getLargeur() const{
+    return largeur;
+}
+float Rectangle ::surface() const{
+
+    return largeur*longueur;
+}
+int Rectangle:: getCount() const{
+    return count;
+}
+void Rectangle:: saisir() {
+    cout<<"Entrer Largeur:";
+    cin>>largeur;
+
+    cout<<"Entrer Longueur";
+    cin>>longueur;
+}
+void Rectangle:: afficher() const{
+
+    cout<<"Larguer =" <<largeur<<endl;
+    cout<<"Longeur = "<<longueur<<endl;
+    cout<<"Surface est :" <<surface()<<endl;
+    
+}
+
+
+
+int main(){
+    Rectangle rect1;
+    rect1.saisir();
+
+    Rectangle rect2(10,10.5);
+    Rectangle rect3;
+    rect3=rect2 ;
+    Rectangle rect4;
+    rect4.setLargeur(10);
+    rect4.setLongueur(10.5);
+
+
+    rect1.afficher();
+    rect2.afficher();
+    rect3.afficher();
+    rect4.afficher();
+
+    // cout<<"Largeur = "<<rect.getLargeur()<<endl;
+    // cout<<"Longueur = "<<rect.getLongueur()<<endl;
+    // cout<<"Surface est :"<<rect.surface();
+
+
+    return 0;
+}
